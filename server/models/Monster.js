@@ -33,6 +33,7 @@ const monsterScheme = new mongoose.Schema({
     type: [Boolean],
     required: true,
     validate: {
+      // this function allows an array of booleans and always returns true. could applly logic to check the array contents instead try Array.isArray(canvas) ...ect
       validator: function(canvas) {
         return true;
       },
@@ -45,8 +46,11 @@ const monsterScheme = new mongoose.Schema({
     validate: {
       validator: function(v) {
         if (v in [0, 1, 2] === false) {
+          // if(![0,1,2].includes(v)) try this and see if this works
           return false;
         }
+
+        // I would also suggest not using nested if statements for the aditional checks and combine them with && opperator
         // if (v >= 1){
         //   if (!name1 || !word1){
         //     return false;
