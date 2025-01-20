@@ -85,6 +85,7 @@ function saveDrawing() {
   return getPixelData(img.data);
 }
 
+// refactor GetPixelData() into two seperate functions, one for generating biniry string and another for preparing monster data object for readiblitiy 
 async function getPixelData(imageData) {
   const rect = c.getBoundingClientRect();
   let outputString = "";
@@ -113,6 +114,11 @@ async function getPixelData(imageData) {
   return monsterData;
 }
 
+// use compressData for all compression processing
+// convert the string into binary using TextEncoder
+// wrap the binary data in a ReadableStream
+// pipe the stream through a CompressionStream
+// resolve the compressed stream into a Blob
 // Function to compress data using Gzip
 async function compressData(data) {
   // Create a new Gzip stream
